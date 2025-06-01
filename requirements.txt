@@ -1,0 +1,13 @@
+
+celery==5.5.2
+Django==5.2.1
+redis==6.2.0
+
+
+# redis-server.exe
+# celery -A myceleryproject worker --pool=solo -l info
+# celery -A myceleryproject worker --loglevel=info  
+
+# docker compose up --build
+# docker compose up
+# docker-compose down
