@@ -9,6 +9,12 @@
 
 <body>
     <h1>home</h1>
+    <hr>
+    {% if result.id %}
+    Task ID: {{ result.id }}
+    <br>
+    <a href="{% url 'check_result' result.id %}"> check task result</a>
+    {% endif %}
 </body>
 
 </html>
