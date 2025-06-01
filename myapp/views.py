@@ -23,6 +23,12 @@ def index(request):
 
 def check_result(request, task_id):
     # retrieve the task result using the task_id
-    print("-------------------------------------------------------------------------------------------")
+
     result = add.AsyncResult(task_id)
+    print("Ready: ", result.ready())
+    print("Successful: ", result.successful())
+    print("Failed: ", result.failed())
+    # print ("GEt: ", result.get() )
+    # .get is used to retrieve the result of the task
+    # If the task is not ready, it will block until the result is available
     return render(request, "myapp/result.html", {"result": result})
