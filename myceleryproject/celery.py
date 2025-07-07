@@ -1,6 +1,8 @@
+from datetime import timedelta
 import os
 
 from celery import Celery
+from celery.schedules import crontab
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myceleryproject.settings")
@@ -24,3 +26,35 @@ app.autodiscover_tasks()
 # @app.task(bind=True, ignore_result=True)
 # def debug_task(self):
 #     print(f"Request: {self.request!r}")
+
+# celery beat
+# normal
+
+# app.conf.beat_schedule = {
+#     "every-10-seconds": {
+#         "task": "myapp.tasks.clear_session_cache",
+#         "schedule": 10,
+#         "args": ("123",),
+#     }
+# }
+
+# using time delta
+
+# app.conf.beat_schedule = {
+#     "every-10-seconds": {
+#         "task": "myapp.tasks.clear_session_cache",
+#         "schedule": timedelta(seconds=10),
+#         "args": ("123",),
+#     }
+# }
+
+# useing Corntabs
+
+
+app.conf.beat_schedule = {
+    "every-1-min": {
+        "task": "myapp.tasks.clear_session_cache",
+        "schedule": crontab(minute="*/1"),
+        "args": ("123",),
+    }
+}

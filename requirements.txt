@@ -7,6 +7,8 @@ django_celery_results==2.6.0
 # celery -A myceleryproject worker --pool=solo -l info
 # celery -A myceleryproject worker --loglevel=info  
 
+# celery -A myceleryproject beat --loglevel=info  
+
 # docker compose up --build
 # docker compose up
 # docker-compose down

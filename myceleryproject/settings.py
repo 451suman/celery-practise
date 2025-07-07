@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_celery_results",
+    "django_celery_beat",
     "myapp",
 ]
 
@@ -140,3 +141,19 @@ CELERY_IGNORE_RESULT = False
 
 # enables extends task result attributes(name, args, kwargs, worker, retrieves, queue, edlivery_info.) to be written to backend
 CELERY_RESULT_EXTENDED = True
+
+
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+# celery beat schedule
+#  Method 1
+# CELERY_BEAT_SCHEDULE = {
+#     "every-10-seconds": {
+#         "task": "myapp.tasks.clear_session_cache",
+#         "schedule": 10,
+#         "args": ("123",),
+#     }
+#     # Add more periodic tasks as needed
+# }
+
+
+# method 2 in celery.py
